@@ -7,8 +7,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.jokedisplay.JokeActivity;
 
-public class MainActivity extends AppCompatActivity {
+
+public class MainActivity extends AppCompatActivity implements EndpointsAsyncTask.Callback{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,4 +47,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onFinished(String result) {
+        Intent intent = new Intent(this, JokeActivity.class);
+        intent.putExtra(Intent.EXTRA_TEXT, result);
+        startActivity(intent);
+    }
 }
